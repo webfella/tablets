@@ -4,3 +4,6 @@
 Icon?
 Thumbs.db
 ehthumbs.db
+
+# Node libraries
+node_modules
