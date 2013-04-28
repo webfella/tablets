@@ -62,6 +62,20 @@ module.exports = (grunt) ->
           src: ['*.html', 'css/*.css', 'js/*.js', 'images/**/*']
           dest: 'dist/'
         ]
+      swipe:
+        files: [
+          expand: true
+          cwd: 'src/'
+          src: ['swipe*.html', 'css/swipe.css', 'js/swipe.js', 'images/*', 'images/swipe/*']
+          dest: 'dist/'
+        ]
+      rotate:
+        files: [
+          expand: true
+          cwd: 'src/'
+          src: ['rotate*.html', 'css/rotate.css', 'js/rotate.js', 'images/*', 'images/rotate/*']
+          dest: 'dist/'
+        ]
     less:
       dist:
         src: 'src/less/*.less'
@@ -111,11 +125,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
-  grunt.registerTask 'default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'copy']
+  grunt.registerTask 'default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'copy:all']
   grunt.registerTask 'develop', ['concat', 'less', 'connect', 'watch']
   grunt.registerTask 'test', ['jshint', 'concat', 'qunit', 'watch:test']
 
-  grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy']
-  grunt.registerTask 'rotate', ['clean', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy']
+  grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe']
+  grunt.registerTask 'rotate', ['clean', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy:rotate']
 
   return
