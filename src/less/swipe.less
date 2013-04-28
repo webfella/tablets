@@ -1,0 +1,77 @@
+@import 'utils';
+
+#tablet-ads {
+	&.swiper {
+		section {
+			position:relative;
+			width:1024px;
+			height:748px;
+			background-color:@darkblue;
+			background-repeat:no-repeat;
+			background-position:0 0;
+			&.background {
+				background-image:url('../images/swipe/bg-summer.jpg');
+			}
+			&.overlay {
+				position:absolute;
+				top:0;
+				left:0;
+				z-index:1;
+				border-left:1px solid @white;
+				background-image:url('../images/swipe/bg-winter.jpg');
+			}
+		}
+		span {
+			&.title {
+				left:140px;
+				top:333px;
+				width:235px;
+				height:16px;
+				background-image:url('../images/swipe/sprite-title.png');
+			}
+			&.tagline {
+				left:140px;
+				top:360px;
+				width:186px;
+				height:16px;
+				background-image:url('../images/swipe/sprite-title.png');
+				background-position:0 -18px;
+			}
+			&.swipe {
+				left:23px;
+				bottom:13px;
+				width:36px;
+				height:22px;
+				background-image:url('../images/swipe/icon-swipe.png');
+			}
+		}
+		&.v2 {
+			section {
+				&.background {
+					background-image:url('../images/swipe/bg-range-rover.jpg');
+				}
+				&.overlay {
+					height:697px;
+					background-image:url('../images/swipe/bg-winter.jpg');
+				}
+			}
+			span {
+				&.swipe {
+					left:23px;
+					bottom:13px;
+					width:201px;
+					height:22px;
+					background-image:url('../images/swipe/icon-swipe-with-text.png');
+				}
+				&.logo {
+					display:block;
+					left:820px;
+					bottom:5px;
+					width:107px;
+					height:74px;
+					background-image:url('../images/logo-range-rover.png');
+				}
+			}
+		}
+	}
+}

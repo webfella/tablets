@@ -1,0 +1,25 @@
+@import 'utils';
+
+.menu {width:80%; padding:10px 0; margin:0 auto;
+	.basefont();
+	color:@white;
+	h1 {
+		padding:@gutter 0;
+		margin:0 0 @gutter;
+		font-weight:normal;
+		text-transform:uppercase;
+		border-bottom:1px solid @lightgrey;
+	}
+	li {
+		padding-bottom:0;
+		margin-bottom:@gutter / 2;
+	}
+	a {
+		color:@lightgrey;
+		text-decoration:underline;
+		&:hover,
+		&:focus {
+			text-decoration:none;
+		}
+	}
+}

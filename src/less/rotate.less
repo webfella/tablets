@@ -1,0 +1,32 @@
+@import 'utils';
+
+#tablet-ads {
+	&.rotator {
+		height:700px;
+		section {
+			margin:0 auto;
+			background-color:@darkblue;
+			background-repeat:no-repeat;
+			background-position:0 0;
+		}
+		span {
+			&.swipe {
+				left:23px;
+				bottom:13px;
+				width:185px;
+				height:22px;
+				background-image:url('../images/rotate/icon-swipe-with-text.png');
+			}
+			&.logo {
+				left:820px;
+				bottom:5px;
+				width:107px;
+				height:74px;
+				background-image:url('../images/logo-range-rover.png');
+			}
+		}
+		.spritespin-preload {
+			background:transparent url('../images/loading.gif') no-repeat 50% 50%;
+		}
+	}
+}
