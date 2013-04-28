@@ -22,6 +22,7 @@ module.exports = (grunt) ->
         boss: true
         eqnull: true
         browser: true
+        devel: true
         globals:
           jQuery: true
       js:
@@ -38,6 +39,9 @@ module.exports = (grunt) ->
       rotate:
         src: ['src/js/libs/jquery-1.9.1.js', 'src/js/libs/jquery.spritespin.js', 'src/js/templates/rotate.js']
         dest: 'src/js/rotate.js'
+      scratch:
+        src: ['src/js/libs/jquery-1.9.1.js', 'src/js/templates/scratch.js']
+        dest: 'src/js/scratch.js'
     uglify:
       options:
         banner: '<%= banner %>'
@@ -51,6 +55,9 @@ module.exports = (grunt) ->
       rotate:
         src: '<%= concat.rotate.dest %>'
         dest: 'dist/js/rotate.min.js'
+      scratch:
+        src: '<%= concat.scratch.dest %>'
+        dest: 'dist/js/scratch.min.js'
     qunit:
       all: 'test/*.html'
     clean: ['dist/']
@@ -66,14 +73,21 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: 'src/'
-          src: ['swipe*.html', 'css/swipe.css', 'js/swipe.js', 'images/*', 'images/swipe/*']
+          src: ['swipe*.html', 'css/swipe.css', 'js/swipe.js', 'images/swipe/*', 'images/*']
           dest: 'dist/'
         ]
       rotate:
         files: [
           expand: true
           cwd: 'src/'
-          src: ['rotate*.html', 'css/rotate.css', 'js/rotate.js', 'images/*', 'images/rotate/*']
+          src: ['rotate*.html', 'css/rotate.css', 'js/rotate.js', 'images/rotate/*', 'images/*']
+          dest: 'dist/'
+        ]
+      scratch:
+        files: [
+          expand: true
+          cwd: 'src/'
+          src: ['scratch*.html', 'css/scratch.css', 'js/scratch.js', 'images/scratch/*', 'images/*']
           dest: 'dist/'
         ]
     less:
@@ -86,6 +100,9 @@ module.exports = (grunt) ->
       rotate:
         src: ['src/less/common.less', 'src/less/rotate.less']
         dest: 'src/css/rotate.css'
+      scratch:
+        src: ['src/less/common.less', 'src/less/scratch.less']
+        dest: 'src/css/scratch.css'
     cssmin:
       options:
         banner: '<%= banner %>'
@@ -98,6 +115,9 @@ module.exports = (grunt) ->
       rotate:
         files:
           'dist/css/rotate.min.css': '<%= less.rotate.dest %>'
+      scratch:
+        files:
+          'dist/css/scratch.min.css': '<%= less.scratch.dest %>'
     connect:
       server:
         options:
@@ -105,7 +125,7 @@ module.exports = (grunt) ->
           base: 'src'
     watch:
       js:
-        files: ['src/js/*.js', '!<%= concat.dist.dest %>']
+        files: ['src/js/libs/*.js', 'src/js/templates/*.js']
         tasks: ['jshint', 'concat']
       less:
         files: ['src/less/*.less']
@@ -131,5 +151,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe']
   grunt.registerTask 'rotate', ['clean', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy:rotate']
+  grunt.registerTask 'scratch', ['clean', 'concat:scratch', 'uglify:scratch', 'less:scratch', 'cssmin:scratch', 'copy:scratch']
 
   return
