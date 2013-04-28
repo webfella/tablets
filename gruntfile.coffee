@@ -30,8 +30,11 @@ module.exports = (grunt) ->
       options:
         stripBanners: true
       dist:
-        src: ['src/js/**/*.js', '!src/js/<%= pkg.name %>.js']
+        src: ['src/js/libs/*.js', 'src/js/templates/*.js']
         dest: 'src/js/<%= pkg.name %>.js'
+      swipe:
+        src: ['src/js/libs/jquery-1.9.1.js', 'src/js/libs/jquery.event.move.js', 'src/js/templates/swipe.js']
+        dest: 'src/js/swipe.js'
     uglify:
       options:
         banner: '<%= banner %>'
@@ -39,6 +42,9 @@ module.exports = (grunt) ->
       dist:
         src: '<%= concat.dist.dest %>'
         dest: 'dist/js/<%= pkg.name %>.min.js'
+      swipe:
+        src: '<%= concat.swipe.dest %>'
+        dest: 'dist/js/swipe.min.js'
     qunit:
       all: 'test/*.html'
     clean: ['dist/']
@@ -47,19 +53,25 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: 'src/'
-          src: ['*.html', 'images/**/*', 'css/<%= pkg.name %>.css', 'js/<%= pkg.name %>.js']
+          src: ['*.html', 'css/*.css', 'js/*.js', 'images/**/*']
           dest: 'dist/'
         ]
     less:
-      development:
+      dist:
         src: 'src/less/*.less'
         dest: 'src/css/<%= pkg.name %>.css'
+      swipe:
+        src: ['src/less/common.less', 'src/less/swipe.less']
+        dest: 'src/css/swipe.css'
     cssmin:
+      options:
+        banner: '<%= banner %>'
       dist:
-        options:
-          banner: '<%= banner %>'
         files:
-          'dist/css/<%= pkg.name %>.min.css': '<%= less.development.dest %>'
+          'dist/css/<%= pkg.name %>.min.css': '<%= less.dist.dest %>'
+      swipe:
+        files:
+          'dist/css/swipe.min.css': '<%= less.swipe.dest %>'
     connect:
       server:
         options:
@@ -90,5 +102,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'copy']
   grunt.registerTask 'develop', ['concat', 'less', 'connect', 'watch']
   grunt.registerTask 'test', ['jshint', 'concat', 'qunit', 'watch:test']
+
+  grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe']
 
   return
