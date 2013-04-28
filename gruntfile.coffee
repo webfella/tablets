@@ -127,7 +127,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'copy:all']
   grunt.registerTask 'develop', ['concat', 'less', 'connect', 'watch']
-  grunt.registerTask 'test', ['jshint', 'concat', 'qunit', 'watch:test']
+  grunt.registerTask 'test', ['jshint', 'concat:dist', 'qunit', 'watch:test']
 
   grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe']
   grunt.registerTask 'rotate', ['clean', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy:rotate']
