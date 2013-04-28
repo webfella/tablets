@@ -8,3 +8,6 @@ ehthumbs.db
 # Node specific
 node_modules
 npm-debug.log
+
+# Compiled source
+dist/
