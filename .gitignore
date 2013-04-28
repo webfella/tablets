@@ -4,6 +4,7 @@
 Icon?
 Thumbs.db
 ehthumbs.db
+.svn
 
 # Node specific
 node_modules
