@@ -7,9 +7,8 @@ Current templates
 ---
 
 * Swipe to reveal
+* Scratch to reveal
 * Drag to rotate
 
 Future concepts
 ---
-
-* Scratch to reveal
