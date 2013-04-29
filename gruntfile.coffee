@@ -130,6 +130,7 @@ module.exports = (grunt) ->
       livereload:
         options:
           port: 9001
+          base: 'src'
           middleware: (connect, options) ->
             [lrSnippet, folderMount(connect, options.base)]
     regarde:
@@ -139,7 +140,7 @@ module.exports = (grunt) ->
       less:
         files: ['src/less/*.less']
         tasks: ['less']
-      markup:
+      reload:
         files: ['src/css/*.css', 'src/js/*.js', 'src/*.html']
         tasks: ['livereload']
       test:
