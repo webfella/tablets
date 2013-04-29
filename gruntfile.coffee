@@ -1,3 +1,9 @@
+'use strict';
+path = require 'path'
+lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet
+folderMount = (connect, point) ->
+  connect.static path.resolve(point)
+
 module.exports = (grunt) ->
 
   grunt.initConfig
@@ -118,18 +124,24 @@ module.exports = (grunt) ->
       scratch:
         files:
           'dist/css/scratch.min.css': '<%= less.scratch.dest %>'
+    livereload:
+      port: 35729
     connect:
-      server:
+      livereload:
         options:
-          port: 9000
-          base: 'src'
-    watch:
+          port: 9001
+          middleware: (connect, options) ->
+            [lrSnippet, folderMount(connect, options.base)]
+    regarde:
       js:
         files: ['src/js/libs/*.js', 'src/js/templates/*.js']
         tasks: ['jshint', 'concat']
       less:
         files: ['src/less/*.less']
         tasks: ['less']
+      markup:
+        files: ['src/css/*.css', 'src/js/*.js', 'src/*.html']
+        tasks: ['livereload']
       test:
         files: ['test/*.html', 'test/**/*.js']
         tasks: ['qunit']
@@ -143,11 +155,12 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-connect'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-livereload'
+  grunt.loadNpmTasks 'grunt-regarde'
 
   grunt.registerTask 'default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'copy:all']
-  grunt.registerTask 'develop', ['concat', 'less', 'connect', 'watch']
-  grunt.registerTask 'test', ['jshint', 'concat:dist', 'qunit', 'watch:test']
+  grunt.registerTask 'develop', ['concat', 'less', 'livereload-start', 'connect', 'regarde']
+  grunt.registerTask 'test', ['jshint', 'concat:dist', 'qunit', 'regarde:test']
 
   grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe']
   grunt.registerTask 'rotate', ['clean', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy:rotate']
