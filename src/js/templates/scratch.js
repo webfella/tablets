@@ -8,8 +8,8 @@
 		if (typeof image !== 'object') {
 			// back and front images
 			image = {
-				'back': { 'url':'images/scratch/background-1.jpg', 'img':null },
-				'front': { 'url':'images/scratch/foreground-1.jpg', 'img':null }
+				'back': { 'url':'images/scratch/background.jpg', 'img':null },
+				'front': { 'url':'images/scratch/foreground.jpg', 'img':null }
 			};
 		}
 
