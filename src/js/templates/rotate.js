@@ -12,7 +12,7 @@
 			resX:         21760,
 			resY:         437,
 			sense:        -1,
-			source:       'images/rotate/bike34x1_big.jpg',
+			source:       'images/rotate/sprite-bike.jpg',
 			enableCanvas: true
 		});
 	};
