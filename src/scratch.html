@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Scratch Template v1</title>
+	<title>Scratch Template</title>
 	<meta charset="UTF-8" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-touch-fullscreen" content="yes" />
@@ -15,7 +15,10 @@
 <script src="js/scratch.js"></script>
 <script>
 	jQuery(function() {
-		tabletAds.scratcher();
+		tabletAds.scratcher({
+			'back': { 'url':'images/scratch/background.jpg', 'img':null },
+			'front': { 'url':'images/scratch/foreground.jpg', 'img':null }
+		});
 	});
 </script>
 </body>
