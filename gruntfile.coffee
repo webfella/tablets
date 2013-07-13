@@ -66,7 +66,9 @@ module.exports = (grunt) ->
         dest: 'dist/js/scratch.min.js'
     qunit:
       all: 'test/*.html'
-    clean: ['dist/']
+    clean: 
+      dev: ['src/css', 'src/js/*.js']
+      dist: ['dist/']
     copy:
       all:
         files: [
@@ -159,12 +161,12 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-livereload'
   grunt.loadNpmTasks 'grunt-regarde'
 
-  grunt.registerTask 'default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'copy:all']
+  grunt.registerTask 'default', ['jshint', 'clean:dist', 'concat', 'uglify', 'less', 'cssmin', 'copy:all', 'clean:dev']
   grunt.registerTask 'develop', ['concat', 'less', 'livereload-start', 'connect', 'regarde']
   grunt.registerTask 'test', ['jshint', 'concat:dist', 'qunit', 'regarde:test']
 
-  grunt.registerTask 'swipe', ['clean', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe']
-  grunt.registerTask 'rotate', ['clean', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy:rotate']
-  grunt.registerTask 'scratch', ['clean', 'concat:scratch', 'uglify:scratch', 'less:scratch', 'cssmin:scratch', 'copy:scratch']
+  grunt.registerTask 'swipe', ['clean:dist', 'concat:swipe', 'uglify:swipe', 'less:swipe', 'cssmin:swipe', 'copy:swipe', 'clean:dev']
+  grunt.registerTask 'rotate', ['clean:dist', 'concat:rotate', 'uglify:rotate', 'less:rotate', 'cssmin:rotate', 'copy:rotate', 'clean:dev']
+  grunt.registerTask 'scratch', ['clean:dist', 'concat:scratch', 'uglify:scratch', 'less:scratch', 'cssmin:scratch', 'copy:scratch', 'clean:dev']
 
   return
