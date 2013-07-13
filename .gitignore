@@ -13,3 +13,4 @@ npm-debug.log
 # Compiled source
 dist/
 src/css/
+src/js/*.js
